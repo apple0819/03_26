@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+<style>
+/* 
+1) CSS란 스타일 시트는 프로그래밍 언어가 아니라, 문서의 디자인을 보완하는 기술이다!important 
+2) 스타일 시트의 문법형식 (Syntax)
+   누구(선택자)를 어떻게 할지(속성)
+   예) img(선택자){
+        width:100px;(속성)
+       } 
+   선택자의 표현방식은 다양하다...
+   예) #pic : 문서내에 pic이라는 아이디를 갖는 요소를 지칭
+        table : 문서내에 table 태그를 지칭
+        .test : 문서내에 test라는 이름을 갖는 클래스를 지칭
+*/
+body{
+    margin: 0px; /* left, top의 마진을 0으로 하면 없어짐 */
+}
+
+div{
+    background-image: url("../images/plane/game_bg.jpg");
+    background-repeat: repeat-x; /* 좌우로만 반복 */
+    background-position: 0px 0px; /*  */
+    height: 640px   ;
+}
+
+/* 선택자중 id 이용하는 방법 */
+#gear {
+    width: 80px;
+    position:absolute; /* 부모 요소를 기준으로 한 위치 속성 */
+    left: 200px;
+    top: 200px;
+    transform: rotate(10deg);
+
+}
+</style>
+<script>
+    var x = 0;
+    var r = 0;
+function moveBg() {
+    x -= 10;
+    r += 10;
+    var bg = document.getElementById("bg");
+    bg.style.backgroundPosition=x+"px 0px";
+    // 문서내의  gear라는 아이디를 갖는 톱니의 각도도 수정하자
+    var gear = document.getElementById("gear");
+    gear.style.transform="rotate("+r+"deg)";
+}
+
+// 자동은 이미 제작된 수동함수를 시간 간격으로 호출하면 된다!!
+// 그리고 이 호출을 인간 대신 컴퓨터가 하면 된다!!
+
+function auto() {
+    setInterval("moveBg()",100); //1000분의 1초까지 표현가능
+}
+</script>
+
+</head>
+
+<body>
+
+    <!-- div 화면을 분할하는 용도의 태그 투명, 초기의 크기는 없다 -->
+    <div id = "bg"> 
+        <button onclick="auto();"> Game Start!! </button>    
+        <img src = "../images/gear.png"id="gear"/>
+    </div>
+
+</body>
+</html>
